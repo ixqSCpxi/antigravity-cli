@@ -2,6 +2,18 @@
 
 The terminal-first surface to interact with Antigravity agents. Stay in your flow without context switching.
 
+## 1.0.9
+
+- Added submodule support for plugins installation. External plugin installation now automatically resolves and initializes Git submodules.
+- Optimized customizations permissions: Automatically grants read-only access to the builtin customizations directory, eliminating redundant permission prompts on startup.
+- Improved glamour parser error handling (like nested checkboxes inside list emphasis) and preventing it from crashing the TUI, falling back to raw text with a warning banner.
+- Updated bubbletea to v2.0.7: Resolves a potential TUI panic when terminal input is unavailable, fixes a data race in mouse handling within the Cursed Renderer, and corrects mouse release behavior under the Kitty Keyboard protocol.
+- Hardened command execution permission checks by enforcing strict exact-match verification for PowerShell scripts, complex shell redirections ( `>` , `2>&1` ), and unparseable strings to prevent sandbox escapes.
+- Hardened sandbox execution by adding `.git` to the core list of dangerous paths, preventing unauthorized or destructive repository modifications.
+- Fixed a bug where allowlisted terminal commands with quoted arguments (e.g., `python -c "print(1)"`) would silently fail to match at runtime due to flawed whitespace tokenization.
+- Fixed a bug in headless print mode resumption (`--conversation`/`-c` `-p ...`) where the CLI would dump the entire historical conversation transcript instead of only printing the newly generated response.
+- Fixed a CPU compatibility issue on ARM64 devices without AES hardware support.
+
 ## 1.0.8
 
 - Added support for capturing slash command history, allowing users to use the up arrow to replay previously entered slash commands.
